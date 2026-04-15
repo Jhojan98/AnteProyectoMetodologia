@@ -1,0 +1,84 @@
+%% main.tex
+%% Documento principal para IEEE Journal
+%% Basado en bare_jrnl.tex V1.4b
+
+\documentclass[journal,onecolumn]{IEEEtran}
+% *** PAQUETES ***
+% Descomentar según necesidad
+% \usepackage{cite}
+% \usepackage[pdftex]{graphicx}
+% \usepackage{amsmath}
+% \usepackage{algorithmic}
+% \usepackage{array}
+% \usepackage[caption=false,font=footnotesize]{subfig}
+\usepackage{url}
+\usepackage{float}
+\usepackage[spanish, es-tabla]{babel}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{float}
+%\usepackage[table]{xcolor}
+\usepackage{graphicx}
+\usepackage[version=4]{mhchem}
+\usepackage{newunicodechar}
+\usepackage[spanish]{babel}
+\usepackage{longtable}
+\usepackage{colortbl}
+\usepackage{hyperref}
+\newunicodechar{₂}{$_2$}
+
+%Diagrama de gantt dependencias:
+% Gantt chart
+\usepackage{pgfgantt}
+% Tablas
+\usepackage{booktabs}   % \toprule, \midrule, \bottomrule
+\usepackage{tabularx}   % entorno tabularx
+
+\input{metadata}
+
+\begin{document}
+\maketitle
+
+
+\input{abtract2v}
+
+\IEEEpeerreviewmaketitle
+
+% *** SECCIONES DEL DOCUMENTO ***
+%  \input{b)DescripcionDocumento}
+\input{c)IdentificaciónDelProblema}
+\input{g)Justificación}
+\input{d)EstadoDelArte}
+
+% \input{e)MarcoTeórico}
+\input{MarcoTeorico2}
+% \input{h)Objetivos}
+% \input{f)Alcance}
+% \input{j)Limitaciones}
+% \input{k)PlanDeTrabajo}
+% \input{i)Cronograma}
+
+
+
+
+\input{conclusion}
+% comentado por que daba error: 
+%\usepackage{multirow}
+
+% *** AGRADECIMIENTOS ***
+\input{Agradecimientos}
+
+% *** REFERENCIAS ***
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+\fi
+\nocite{*}
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEabrv,references}
+
+
+
+% *** BIOGRAFÍAS ***
+%\input{biographies}
+
+\end{document}

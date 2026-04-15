@@ -1,0 +1,93 @@
+\section{Cronograma}
+\label{sec:cronograma}
+
+\subsection{Diagrama de Gantt}
+
+\begin{figure}[H]
+  \centering
+  \begin{ganttchart}[
+      hgrid,
+      vgrid={*{3}{dotted}, black},
+      title/.append style={fill=black, draw=black},
+      title label font=\color{white}\small\bfseries,
+      bar/.append style={fill=gray!40},
+      bar label font=\small,
+      group/.append style={fill=gray!70, draw=black},
+      group label font=\small\bfseries,
+      milestone/.append style={fill=black, draw=black},
+      x unit=0.55cm,
+      y unit title=0.6cm,
+      y unit chart=0.55cm,
+      bar height=0.5,
+      group height=0.3
+    ]{1}{16}
+    %── Encabezado ─────────────────────────────────────────────
+    \gantttitle{Semanas del semestre}{16} \\
+    \gantttitlelist{1,...,16}{1} \\
+    %── FASE 1 ─────────────────────────────────────────────────
+    \ganttgroup{Fase 1: Recolección y Limpieza}{1}{5} \\
+    \ganttbar{A1.1\ \ Descarga y consolidación SECOP II}{1}{3} \\
+    \ganttbar{A1.2\ \ Limpieza y normalización de datos}{2}{4} \\
+    \ganttbar{A1.3\ \ Construcción variable objetivo}{3}{5} \\
+    %── FASE 2 ─────────────────────────────────────────────────
+    \ganttgroup{Fase 2: Ingeniería de Características}{5}{8} \\
+    \ganttbar{A2.1\ \ Selección y construcción de variables}{5}{7} \\
+    \ganttbar{A2.2\ \ Pipeline de preprocesamiento}{6}{8} \\
+    \ganttbar{A2.3\ \ Análisis exploratorio (EDA)}{6}{8} \\
+    %── FASE 3 ─────────────────────────────────────────────────
+    \ganttgroup{Fase 3: Entrenamiento y Evaluación}{8}{13} \\
+    \ganttbar{A3.1\ \ Regresión Logística (línea base)}{8}{10} \\
+    \ganttbar{A3.2\ \ Entrenamiento Random Forest}{9}{11} \\
+    \ganttbar{A3.3\ \ Entrenamiento XGBoost}{10}{12} \\
+    \ganttbar{A3.4\ \ Validación cruzada estratificada}{11}{13} \\
+    %── FASE 4 ─────────────────────────────────────────────────
+    \ganttgroup{Fase 4: Análisis y Cierre}{13}{16} \\
+    \ganttbar{A4.1\ \ Comparación de métricas y modelos}{13}{14} \\
+    \ganttbar{A4.2\ \ Análisis de importancia de variables}{13}{15} \\
+    \ganttbar{A4.3\ \ Redacción monografía final}{14}{16} \\
+    %── Hito ───────────────────────────────────────────────────
+    \ganttmilestone{Entrega final}{16}
+  \end{ganttchart}
+  \caption{Diagrama de Gantt -- Cronograma del proyecto (16~semanas).}
+  \label{fig:gantt}
+\end{figure}
+
+\subsection{Tabla de Hitos}
+
+Los hitos funcionan como puntos de control internos. Si al llegar a uno el
+entregable no está listo, hay margen para ajustar el ritmo antes de que el
+retraso se propague a la fase siguiente.
+
+\begin{table}[H]
+  \centering
+  \caption{Hitos del proyecto}
+  \label{tab:hitos}
+  \renewcommand{\arraystretch}{1.3}
+  \begin{tabularx}{\linewidth}{c l X c}
+    \toprule
+    \textbf{N°} & \textbf{Hito} & \textbf{Criterio de cumplimiento} & \textbf{Semana} \\
+    \midrule
+    H1 & Datos listos
+       & Dataset limpio, variable objetivo construida y umbral de \textit{proxy}
+         documentado
+       & 5 \\
+    H2 & Pipeline funcional
+       & Flujo de preprocesamiento serializado, probado y versionado en el
+         repositorio
+       & 8 \\
+    H3 & Modelos entrenados
+       & Los tres clasificadores ajustados con hiperparámetros registrados
+         en el experimento
+       & 12 \\
+    H4 & Evaluación cerrada
+       & Reporte de métricas con validación cruzada completo y revisado
+       & 13 \\
+    H5 & Modelo seleccionado
+       & Elección justificada del algoritmo final con análisis SHAP incluido
+       & 15 \\
+    H6 & Entrega final
+       & Monografía y repositorio de código públicos y documentados
+       & 16 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}

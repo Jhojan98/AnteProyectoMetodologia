@@ -1,0 +1,38 @@
+\section{Marco Teórico}
+
+\subsection{Contratación pública y corrupción}
+
+La contratación pública es el mecanismo principal que tiene el Estado para ejecutar obras y prestar servicios a los ciudadanos. En Colombia está regulada por la Ley 80 de 1993 y la Ley 1150 de 2007, que establecen principios como transparencia, economía y selección objetiva para garantizar el uso eficiente de los recursos públicos \cite{mendieta2022regimen}. Sin embargo, este sistema es vulnerable a múltiples formas de corrupción, entre ellas: colusión entre oferentes, fraccionamiento de contratos, adjudicación a empresas sin capacidad técnica real y manipulación de pliegos \cite{decarolis2022corruption}. Estas irregularidades son especialmente problemáticas en proyectos financiados por el Sistema General de Regalías (SGR), donde la combinación de recursos abundantes y capacidades institucionales débiles ha generado los llamados ``elefantes blancos'': obras costosas, inútiles o abandonadas que representan detrimento patrimonial para las regiones \cite{gomez2025data}.
+
+Una distinción conceptual relevante para este trabajo es la que existe entre \textit{desperdicio activo} (acciones deliberadas que benefician a funcionarios o contratistas a expensas del erari) y \textit{desperdicio pasivo} (ineficiencias por falta de capacidad o incentivos, sin intención corrupta \cite{salazar2024vigia}). La mayoría de los sistemas de control tradicionales se enfocan en el primero, dejando de lado el segundo, que puede representar una proporción mucho mayor del total del gasto ineficiente.
+
+Frente a este panorama, \cite{sierra2025contratacion} y \cite{calderon2025contratacion} señalan que la disponibilidad de datos abiertos en plataformas como SECOP II abre la posibilidad de transitar de un modelo de auditoría reactiva hacia uno de vigilancia preventiva basado en analítica de datos.
+
+\subsection{Aprendizaje automático para la detección de riesgos}
+
+El aprendizaje automático (\textit{Machine Learning}) es una rama de la inteligencia artificial que desarrolla algoritmos capaces de identificar patrones en datos históricos para realizar predicciones sobre nuevos casos. En este proyecto se aplican técnicas de \textit{aprendizaje supervisado}, donde el modelo aprende a partir de ejemplos etiquetados (contratos que presentaron irregularidades versus los que no) con el fin de clasificar contratos futuros según su nivel de riesgo.
+
+Los tres algoritmos considerados en este trabajo son:
+
+\begin{enumerate}
+    \item \textbf{Regresión Logística:} modelo estadístico que estima la probabilidad de que una observación pertenezca a una clase, en función de variables predictoras. Su principal ventaja es la interpretabilidad directa de sus coeficientes. Se utiliza como línea base de comparación \cite{gallego2021preventing}.
+
+    \item \textbf{Random Forest:} algoritmo de ensamble que construye múltiples árboles de decisión sobre muestras aleatorias de los datos y combina sus predicciones por votación mayoritaria. Captura relaciones no lineales entre variables y permite calcular la importancia relativa de cada predictor, lo cual es útil para identificar qué características del contrato son más relevantes para el riesgo \cite{salazar2024vigia, decarolis2022corruption}.
+
+    \item \textbf{XGBoost} (\textit{Extreme Gradient Boosting}): algoritmo de \textit{boosting} que construye árboles de manera secuencial, donde cada árbol corrige los errores del anterior. Su regularización incorporada lo hace robusto frente a datos ruidosos y ha mostrado mejor desempeño que modelos lineales en tareas de predicción de costos y riesgos en infraestructura \cite{alshboul2022extreme}.
+\end{enumerate}
+
+\subsection{Evaluación de modelos y variable objetivo}
+
+Para comparar el desempeño de los modelos se utilizan métricas robustas, especialmente útiles cuando las clases están desbalanceadas, como ocurre cuando los contratos problemáticos son minoría:
+
+\begin{enumerate}
+    \item \textbf{Precisión} (\textit{precision}): proporción de contratos identificados como riesgosos que efectivamente lo son.
+    \item \textbf{Recall} (sensibilidad): proporción de contratos realmente riesgosos que el modelo logra detectar.
+    \item \textbf{F1-score:} media armónica entre precisión y recall, útil cuando se busca un balance entre ambas.
+    \item \textbf{AUC-ROC:} mide la capacidad general del modelo para distinguir entre clases a través de distintos umbrales, siendo el indicador más usado para comparar modelos entre sí \cite{salazar2024vigia}.
+\end{enumerate}
+
+Para evitar sobreajuste y garantizar que las métricas reflejen el desempeño real, se aplica validación cruzada estratificada con $k = 5$ pliegues, asegurando que cada partición conserve la proporción de clases del conjunto original.
+
+Finalmente, dado que en SECOP II no existe un campo que etiquete directamente los contratos como fallidos o irregulares, la variable objetivo debe construirse a partir de indicadores \textit{proxy} como la presencia de adiciones contractuales repetidas, suspensiones durante la ejecución o diferencias significativas entre las fechas pactadas y reales de terminación \cite{gomez2025data, dulce2021deteccion}. Esta aproximación es la más común en la literatura y representa la mejor alternativa disponible, aunque tiene la limitación de no capturar esquemas de corrupción que no dejan rastro en los datos públicos.

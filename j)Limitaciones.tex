@@ -1,0 +1,62 @@
+\section{Limitaciones del Proyecto}
+
+Todo modelo predictivo tiene un techo definido por los datos y los recursos con que
+se construye. Reconocer esas restricciones desde el inicio no es una debilidad del
+proyecto: es una condición para interpretar correctamente sus resultados.
+
+\subsection{Limitaciones Técnicas}
+
+El entrenamiento se hará en Google Colab (GPU compartida) y equipos personales.
+Eso impone dos restricciones reales que vale la pena nombrar sin rodeos.
+
+Primero, la memoria disponible por sesión puede ser insuficiente para procesar el
+total de registros de SECOP~II de una sola vez. Según el volumen final de datos,
+puede ser necesario recurrir a submuestreo estratificado o dividir el procesamiento
+en lotes. Ninguna de las dos opciones invalida el experimento, pero sí agrega
+un paso de decisión metodológica que habrá que documentar.
+
+Segundo, los espacios de búsqueda de hiperparámetros tendrán que acotarse.
+Una búsqueda exhaustiva sobre XGBoost con muchos parámetros puede tomar horas
+en los entornos disponibles, lo que hace inviable esa estrategia. La búsqueda
+aleatoria (\texttt{RandomizedSearchCV}) es la alternativa estándar en estos casos
+y produce resultados competitivos con una fracción del costo computacional, aunque
+sin garantía de encontrar la configuración óptima global.
+
+Para que los experimentos sean reproducibles, se fijarán semillas aleatorias y se
+registrarán las versiones exactas de todas las librerías en un archivo de entorno.
+
+\subsection{Limitaciones de los Datos}
+
+Las restricciones de datos son más difíciles de mitigar que las técnicas, porque
+dependen de cómo está construida la plataforma SECOP~II y de qué información
+el Estado colombiano publica de forma abierta.
+
+\subsubsection{No existe una etiqueta oficial de incumplimiento}
+
+SECOP~II no tiene un campo que diga si un contrato terminó mal. Para construir
+la variable objetivo hay que inferirla: un contrato se etiqueta como problemático
+si acumula varias adiciones, muestra suspensiones reiteradas o si la diferencia
+entre la fecha de terminación pactada y la fecha real de liquidación supera un
+umbral razonable. Esta aproximación introduce ruido en las etiquetas. Algunos
+contratos pueden quedar mal clasificados, lo que afecta la calidad del
+entrenamiento supervisado y hace que las métricas del modelo sean probablemente
+algo optimistas respecto a un escenario con etiquetas perfectas.
+
+\subsubsection{Calidad irregular de los registros}
+
+Los datos de SECOP~II no son uniformes. Hay campos vacíos, registros duplicados,
+municipios codificados de maneras distintas según la entidad que los ingresó y
+fechas con formatos inconsistentes. El pipeline de limpieza se encargará de la
+mayoría de estos problemas, pero es probable que un porcentaje de contratos deba
+descartarse por falta de información mínima. Si ese porcentaje no es aleatorio
+---por ejemplo, si las entidades con peor calidad de datos son también las más
+propensas a irregularidades--- el conjunto de entrenamiento quedará sesgado.
+
+\subsubsection{El modelo no ve lo que no está publicado}
+
+Al trabajar exclusivamente con datos abiertos, el modelo queda ciego ante
+irregularidades que no dejan rastro en SECOP~II. Vínculos societarios entre
+contratistas, historial de sanciones en otras entidades o transferencias fuera
+del sistema no son capturables con este enfoque. Eso no hace inútil al modelo:
+hay suficiente evidencia internacional de que las variables contractuales públicas
+sí predicen riesgo. Pero sí fija un límite claro a lo que puede detectar.

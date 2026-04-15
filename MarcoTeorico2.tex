@@ -1,0 +1,84 @@
+\section{Marco Teórico}
+
+\subsection{Contratación pública, corrupción y riesgo}
+
+La contratación pública constituye uno de los principales mecanismos mediante los cuales el Estado ejecuta inversión pública, adquiere bienes y presta servicios a la ciudadanía. En Colombia, este proceso está regulado por la Ley 80 de 1993 y la Ley 1150 de 2007, las cuales establecen principios como transparencia, economía y selección objetiva, orientados a garantizar el uso eficiente de los recursos públicos \cite{mendieta2022regimen}.
+
+No obstante, la literatura ha documentado que este sistema es altamente vulnerable a diversas formas de corrupción e ineficiencia. Entre las prácticas más comunes se encuentran la colusión entre oferentes (bid-rigging), la manipulación de pliegos, la adjudicación dirigida y la participación de empresas sin capacidad técnica real \cite{decarolis2022corruption, spagnolo2024bidrigging}. Estas prácticas distorsionan la competencia, incrementan los costos y reducen la calidad de las obras públicas.
+
+
+
+Desde una perspectiva analítica, es relevante distinguir entre \textit{desperdicio activo}, asociado a conductas deliberadamente corruptas, y \textit{desperdicio pasivo}, relacionado con ineficiencias derivadas de limitaciones institucionales o técnicas \cite{salazar2024vigia}. Esta distinción es clave, ya que muchos sistemas de control se enfocan únicamente en detectar corrupción explícita, ignorando patrones de riesgo que pueden anticipar fallas en la ejecución de los contratos.
+
+En este sentido, el concepto de \textit{riesgo en contratación pública} se refiere a la probabilidad de que un contrato presente desviaciones significativas en costo, tiempo o calidad, ya sea por causas corruptas o por ineficiencia administrativa. Este enfoque permite ampliar el análisis desde la detección de irregularidades pasadas hacia la predicción de problemas futuros.
+
+\subsection{Detección de corrupción y colusión basada en datos}
+
+El uso de datos en la detección de corrupción ha cobrado relevancia en los últimos años, impulsado por la disponibilidad de plataformas de datos abiertos y el avance de técnicas analíticas. En particular, la contratación pública presenta características que facilitan el análisis de patrones, como la repetición de procesos, la estandarización de procedimientos y la disponibilidad de registros históricos \cite{zhang2022collusion}.
+
+Diversos estudios han demostrado que es posible identificar señales de alerta (\textit{red flags}) asociadas a prácticas corruptas mediante el análisis de datos. Estas incluyen patrones anómalos en precios, baja variabilidad en ofertas, concentración de contratos en ciertos proveedores y comportamientos repetitivos entre participantes \cite{decarolis2022corruption, lyra2022fraud}.
+
+En el contexto de la contratación pública, la colusión se define como un acuerdo ilegal entre dos o más empresas competidoras para manipular el resultado de un proceso de contratación, generalmente mediante la coordinación de precios o la distribución de contratos, con el fin de aumentar sus beneficios a expensas del Estado \cite{zhang2022collusion, spagnolo2024bidrigging}. Estas prácticas, también conocidas como \textit{bid-rigging}, eliminan la competencia efectiva y generan sobrecostos significativos en la contratación pública.
+
+En el caso de la colusión, se ha evidenciado que los actores pueden coordinarse para simular competencia, por ejemplo, mediante la presentación de ofertas ficticias o la rotación de ganadores en licitaciones sucesivas \cite{morselli2017bidrigging}. Estos comportamientos generan patrones detectables a través de técnicas estadísticas y de aprendizaje automático.
+
+En este contexto, el enfoque de detección basado en datos permite pasar de modelos tradicionales de auditoría reactiva hacia sistemas de vigilancia preventiva, donde los contratos son evaluados en tiempo real según su nivel de riesgo \cite{sierra2025contratacion, calderon2025contratacion}.
+
+\subsection{Aprendizaje automático para la predicción de riesgos}
+
+El aprendizaje automático (\textit{Machine Learning}) es una rama de la inteligencia artificial que permite construir modelos capaces de identificar patrones en grandes volúmenes de datos y realizar predicciones sobre nuevos casos. En el ámbito de la contratación pública, estas técnicas han sido utilizadas para predecir riesgos de corrupción, sobrecostos y retrasos en proyectos \cite{tas2024machine, gallego2021preventing}.
+
+Este trabajo se enfoca en el uso de aprendizaje supervisado, donde los modelos se entrenan a partir de datos históricos etiquetados, con el objetivo de clasificar contratos según su nivel de riesgo. Este enfoque ha demostrado ser efectivo incluso en contextos donde la información disponible es limitada, ya que los algoritmos pueden extraer patrones complejos a partir de variables observables \cite{zhang2022collusion}.
+
+Los algoritmos considerados en este estudio son:
+
+\begin{enumerate}
+    \item \textbf{Regresión Logística:} modelo estadístico que estima la probabilidad de pertenencia a una clase en función de variables predictoras. Se utiliza como línea base por su interpretabilidad y facilidad de implementación \cite{gallego2021preventing}.
+
+    \item \textbf{Random Forest:} método de ensamble basado en múltiples árboles de decisión, que permite capturar relaciones no lineales y evaluar la importancia de las variables. Ha sido ampliamente utilizado en problemas de detección de fraude y riesgo \cite{salazar2024vigia, decarolis2022corruption}.
+
+    \item \textbf{XGBoost:} algoritmo de \textit{boosting} que optimiza secuencialmente el desempeño del modelo mediante la corrección de errores. Su capacidad de regularización y manejo de datos complejos lo ha posicionado como uno de los métodos más efectivos en problemas de predicción en ingeniería y economía \cite{alshboul2022extreme}.
+\end{enumerate}
+
+\subsection{Evaluación de modelos y construcción de la variable objetivo}
+
+La evaluación de modelos de clasificación en contextos de contratación pública requiere el uso de métricas robustas, especialmente cuando las clases están desbalanceadas. En estos casos, la exactitud global puede resultar engañosa, por lo que se emplean métricas como precisión, recall, F1-score y AUC-ROC, las cuales permiten evaluar tanto la capacidad del modelo para শন detectar casos positivos como el equilibrio entre diferentes tipos de error \cite{salazar2024vigia}. Sea $TP$ el número de verdaderos positivos, $FP$ el de falsos positivos, $TN$ el de verdaderos negativos y $FN$ el de falsos negativos. Entonces, la \textit{precisión} mide la proporción de predicciones positivas que son correctas:
+
+\[
+\text{Precisión} = \frac{TP}{TP + FP}
+\]
+
+El \textit{recall} o sensibilidad cuantifica la proporción de casos positivos reales que el modelo logra identificar:
+
+\[
+\text{Recall} = \frac{TP}{TP + FN}
+\]
+
+El \textit{F1-score} combina precisión y recall en una sola métrica armónica, útil cuando se busca balancear ambos indicadores:
+
+\[
+F1 = 2 \cdot \frac{\text{Precisión} \cdot \text{Recall}}{\text{Precisión} + \text{Recall}}
+\]
+
+equivalentemente,
+
+\[
+F1 = \frac{2TP}{2TP + FP + FN}
+\]
+
+Por su parte, la curva ROC relaciona la tasa de verdaderos positivos con la tasa de falsos positivos, donde:
+
+\[
+\text{TPR} = \frac{TP}{TP + FN}, \qquad
+\text{FPR} = \frac{FP}{FP + TN}
+\]
+
+Finalmente, el \textit{AUC-ROC} corresponde al área bajo la curva ROC y resume la capacidad discriminativa del modelo; valores cercanos a 1 indican mejor desempeño, mientras que un valor de 0.5 sugiere una clasificación equivalente al azar:
+
+\[
+AUC = \int_0^1 \text{TPR}( \text{FPR}) \, d(\text{FPR})
+\]
+
+Para garantizar la validez de los resultados, se utiliza validación cruzada estratificada con $k = 5$ pliegues, lo que permite estimar el desempeño del modelo en datos no observados y reducir el riesgo de sobreajuste.
+
+Finalmente, dado que las bases de datos de contratación pública no incluyen etiquetas explícitas de corrupción, la variable objetivo se construye a partir de indicadores \textit{proxy}, tales como adiciones contractuales recurrentes, suspensiones en la ejecución o desviaciones significativas en tiempo y costo \cite{gomez2025data, dulce2021deteccion}. Aunque esta aproximación presenta limitaciones, constituye una estrategia ampliamente utilizada en la literatura para aproximar el riesgo en ausencia de datos directos sobre irregularidades.

@@ -1,0 +1,69 @@
+\section{Plan de Trabajo}
+
+El trabajo se organiza en cuatro fases. Las dos primeras preparan los datos y
+las variables; las dos últimas construyen, ajustan y comparan los modelos. Algunas
+actividades se solapan intencionalmente: el análisis exploratorio arranca en la
+fase~2 porque los hallazgos descriptivos orientan qué variables conviene incluir,
+y la redacción del informe comienza en la fase~4 antes de que termine el análisis
+para no acumular toda la escritura al final.
+
+\begin{table}[H]
+  \centering
+  \caption{Plan de trabajo por fases y actividades}
+  \label{tab:plan}
+  \renewcommand{\arraystretch}{1.35}
+  \begin{tabularx}{\linewidth}{c l X c}
+    \toprule
+    \textbf{Fase} & \textbf{Actividad} & \textbf{Descripción / Herramientas} & \textbf{Semanas} \\
+    \midrule
+    \multirow{2}{*}{1}
+      & Recolección y limpieza
+      & Descarga de registros SECOP~II vía API o CSV. Normalización de campos,
+        imputación de nulos, deduplicación y corrección de codificación territorial.
+        Python, Pandas, Requests.
+      & 1\,--\,5 \\
+      & Variable objetivo
+      & Definición del \textit{proxy} de incumplimiento: adiciones contractuales,
+        suspensiones reiteradas y desfase entre fecha pactada y fecha real de
+        liquidación. Análisis de sensibilidad del umbral elegido.
+      & 3\,--\,5 \\
+    \midrule
+    \multirow{2}{*}{2}
+      & Ingeniería de características
+      & Selección, transformación y codificación de variables predictoras (anticipos,
+        modalidad, proponentes, ubicación). Análisis exploratorio para detectar
+        correlaciones y desbalance de clases. Scikit-learn, Feature-engine.
+      & 5\,--\,8 \\
+      & \textit{Pipeline} de preprocesamiento
+      & Construcción del flujo reproducible: imputación, escalado estándar y
+        codificación \textit{one-hot}. Serialización con \texttt{joblib} para
+        reutilización en inferencia. Scikit-learn Pipeline.
+      & 6\,--\,8 \\
+    \midrule
+    \multirow{2}{*}{3}
+      & Entrenamiento de modelos
+      & Ajuste de Regresión Logística (línea base), Random Forest y XGBoost.
+        Optimización con \texttt{RandomizedSearchCV} ($n\_iter = 50$).
+        Google Colab, Scikit-learn, XGBoost.
+      & 8\,--\,12 \\
+      & Validación y métricas
+      & Validación cruzada estratificada $k = 5$. Reporte de AUC-ROC, F1-score,
+        precisión, \textit{recall} y curvas PR para cada modelo.
+      & 11\,--\,13 \\
+    \midrule
+    \multirow{2}{*}{4}
+      & Análisis comparativo
+      & Comparación de modelos. Análisis de importancia con SHAP y
+        \textit{permutation importance}. Selección y justificación del modelo final.
+      & 13\,--\,15 \\
+      & Informe y monografía
+      & Redacción del informe técnico y la monografía. Organización del repositorio
+        con código, datos de muestra y ambiente reproducible.
+      & 14\,--\,16 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+El repositorio en Git documentará cada experimento con su semilla, versión de
+librerías y métricas obtenidas. Eso permite retomar cualquier punto del trabajo
+sin tener que repetir el procesamiento completo.

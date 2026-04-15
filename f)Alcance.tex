@@ -1,0 +1,70 @@
+\section{Alcance del Proyecto}
+
+Este proyecto se centra en construir y evaluar un modelo de aprendizaje automático
+capaz de estimar el nivel de riesgo de contratos públicos de infraestructura justo
+cuando se adjudican, antes de que comience la ejecución. La materia prima son los
+registros abiertos de SECOP~II, particularmente los contratos que se financian con
+recursos del Sistema General de Regalías~(SGR).
+
+\subsection{Entregables Funcionales}
+
+Al cierre del proyecto se contará con los siguientes productos concretos:
+
+\begin{itemize}
+    \item Un \textit{pipeline} de extracción y preparación de datos que cubra desde
+    la descarga de registros de SECOP~II hasta la generación de un conjunto de datos
+    listo para modelar. Esto incluye manejo de nulos, corrección de inconsistencias
+    territoriales y la construcción indirecta de la variable de riesgo a través de
+    indicadores \textit{proxy}.
+
+    \item Un módulo de ingeniería de características con las variables que la
+    literatura identifica como más informativas: porcentaje de anticipo, modalidad
+    de contratación, número de proponentes y localización del contrato.
+
+    \item Un módulo de entrenamiento que compare tres clasificadores ---Regresión
+    Logística, Random Forest y XGBoost--- ajustados con búsqueda aleatoria de
+    hiperparámetros (\texttt{RandomizedSearchCV}) para mantenerse dentro de los
+    límites computacionales del proyecto.
+
+    \item Un módulo de evaluación con validación cruzada estratificada ($k = 5$) y
+    reporte de AUC-ROC, F1-score, precisión y \textit{recall}. Se añadirá un análisis
+    de importancia de variables para saber qué factores pesan más en la predicción.
+
+    \item El modelo seleccionado, serializado y documentado, junto con el código
+    reproducible del experimento completo.
+
+    \item Un informe técnico que compare los tres algoritmos, discuta qué variables
+    resultaron más relevantes y proponga cómo podría escalar este trabajo hacia un
+    Sistema de Alertas Tempranas operativo.
+\end{itemize}
+
+\subsection{Área de Estudio}
+
+El foco está puesto en contratos de infraestructura del SGR registrados en SECOP~II.
+Se eligió ese universo por dos razones prácticas: los montos involucrados son
+considerables y la plataforma ofrece datos estructurados de acceso público, lo que
+hace viable el proyecto sin necesidad de convenios institucionales.
+
+\subsection{Frontera del Proyecto}
+
+Para no exceder la capacidad del equipo en el tiempo disponible, quedan fuera del
+alcance las siguientes actividades:
+
+\begin{itemize}
+    \item Desplegar el modelo en producción o integrarlo con los sistemas de alguna
+    entidad de control. El trabajo termina en la validación académica del modelo.
+
+    \item Desarrollar cualquier tipo de interfaz de usuario ---web, móvil o de
+    escritorio---. Los resultados se presentan en el informe y el repositorio de
+    código.
+
+    \item Ejecutar búsquedas exhaustivas de hiperparámetros (Grid Search completo),
+    dado el costo computacional que implica sobre XGBoost con espacios de parámetros
+    amplios.
+
+    \item Detectar esquemas de corrupción que no dejen huella en los registros
+    públicos: acuerdos verbales, testaferros no vinculados o pagos fuera del sistema.
+    Eso requiere fuentes de inteligencia financiera que están fuera del alcance de
+    este trabajo.
+\end{itemize}
+

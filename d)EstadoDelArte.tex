@@ -1,0 +1,85 @@
+\section{Estado del arte}
+
+\subsection{Métodos técnicos basados en Inteligencia Artificial y \textit{Machine Learning}}
+
+Varios investigadores han trabajado en el uso de modelos de aprendizaje automático para detectar problemas en la contratación pública, y sus resultados son bastante relevantes para este trabajo. Por ejemplo, en \cite{gallego2021preventing} crearon un sistema de alertas tempranas usando datos del SECOP que buscaba predecir irregularidades contractuales antes de que ocurrieran, aplicando regresión logística y árboles de decisión. Luego, en \cite{salazar2024vigia} fueron un paso más allá con el sistema VigIA, implementado en la Alcaldía de Bogotá, que usa \textit{Random Forest} e índices de riesgo para detectar contratos con alta probabilidad de presentar demoras o irregularidades financieras. Los dos estudios coinciden en algo importante: las características del contrato que se conocen desde el momento de la adjudicación, como la modalidad, el valor y el número de oferentes, ya permiten anticipar si un contrato va a tener problemas.
+
+También hay trabajos orientados a detectar colusión entre oferentes. En  \cite{tas2024machine} propusieron un algoritmo basado en mínimos cuadrados regularizados por \textit{kernel} (KRLS) que logra identificar colusión en subastas usando solo datos básicos como el precio adjudicado y el número de participantes, sin necesitar información detallada de los pliegos. Por su parte, en \cite{decarolis2022corruption} analizaron indicadores de corrupción en licitaciones de obra vial en Italia, comparando LASSO, Ridge y \textit{Random Forest}, y concluyeron que este último modelo tiene mejor desempeño predictivo, especialmente cuando se incluyen variables que no se reportan de forma estándar.
+
+En cuanto a la predicción de sobrecostos y retrasos en proyectos de infraestructura, también existe bastante literatura. En \cite{gomez2025data} y \cite{gomez2025analyzing} se enfocaron en Colombia en donde aplicaron enfoques basados en datos de plataformas abiertas del Estado para modelar desviaciones de tiempo y costo en proyectos viales y educativos, encontrando que el tipo de proceso de selección, las adiciones contractuales y el origen de los recursos son variables clave. A nivel internacional, podemos ver que en  \cite{alshboul2022extreme} mostraron que \textit{XGBoost} supera a la regresión lineal en la predicción de costos de construcción, gracias a su capacidad para capturar relaciones no lineales. Más recientemente, en \cite{galjanic2025neural} usaron redes neuronales artificiales para predecir retrasos y sobrecostos, logrando un MAPE de 10.93\% para la predicción de retrasos, y destacaron que combinar indicadores cuantitativos y cualitativos mejora notablemente los resultados.
+
+\subsection{Aplicaciones directas en SECOP y contratación pública}
+
+SECOP registra prácticamente todo el ciclo de vida de un contrato público:
+modalidad, número de oferentes, valor adjudicado, modificaciones y estado de
+ejecución. Esa amplitud lo convierte en la fuente más completa disponible para
+estudiar contratación en Colombia, y varios grupos de investigación ya la han
+aprovechado. Por ejemplo en \cite{calderon2025contratacion}, \cite{sierra2025contratacion} se agurmeta que trabajar sistemáticamente con esos datos abre la puerta a pasar
+del control reactivo (que actúa cuando el daño ya ocurrió) a uno preventivo
+basado en análisis predictivo.
+
+El antecedente más directo de este trabajo es el sistema VigIA
+\cite{salazar2024vigia}, desarrollado para la Alcaldía de Bogotá. Usando
+registros de SECOP~II y modelos de \textit{Random Forest}, construyeron índices
+de riesgo que le permiten a la entidad priorizar qué contratos vigilar. El
+resultado más útil de ese trabajo no es el modelo en sí, sino lo que demuestra:
+la información disponible desde la adjudicación ya contiene señales suficientes
+para separar contratos problemáticos de los que no lo son, antes de que empiece
+la ejecución.
+
+En una línea similar, en \cite{gomez2025data} analizan proyectos viales en
+Colombia y encontraron que tres variables (el tipo de proceso de selección, las
+adiciones contractuales y la estructura financiera) explican buena parte de las
+desviaciones en tiempo y costo. En \cite{gomez2025analyzing} llegan a conclusiones
+parecidas revisando infraestructura educativa. Ambos trabajos usan plataformas
+públicas del Estado como fuente de datos, lo que confirma que ese camino es
+viable metodológicamente.
+
+Este proyecto sigue esa misma lógica, pero desplaza el foco hacia contratos del
+Sistema General de Regalías~(SGR), un universo que concentra montos significativos
+y una historia documentada de obras inconclusas o ``elefantes blancos''.
+
+
+\subsection{Contexto colombiano: corrupción, control institucional y gobierno abierto}
+
+La inteligencia artificial también se ha analizado desde una perspectiva más institucional, pensando en cómo puede apoyar los sistemas de control y transparencia en Colombia. En \cite{calderon2025contratacion} se argumenta que los sistemas predictivos pueden fortalecer el control fiscal preventivo al detectar patrones anómalos en contratos antes de que se conviertan en problemas. Según los autores, esto también mejora la trazabilidad de las decisiones administrativas y reduce las asimetrías de información que favorecen la corrupción.
+
+En esa misma línea, en \cite{gallego2021preventing} se propone que los modelos de alerta temprana son una alternativa complementaria a los enfoques tradicionales de sanción, que actúan después de que el daño ya está hecho. Esto es especialmente relevante en contextos donde los organismos de control no tienen recursos suficientes para auditar todos los contratos.
+
+La apertura de la información contractual genera condiciones que permiten 
+a ciudadanos e investigadores monitorear el comportamiento de los actores 
+involucrados en la contratación pública \cite{sierra2025contratacion} .
+
+En cuanto a la aceptación institucional, se ha analizado la percepción de 
+funcionarios colombianos frente al uso de IA para combatir la corrupción, 
+encontrando una valoración positiva de su potencial; sin embargo, persisten 
+preocupaciones relacionadas con la transparencia algorítmica y la 
+interpretabilidad de los modelos \cite{ospina2024percepcion} . Este aspecto resulta clave al diseñar sistemas de este tipo.
+
+\subsection{Marco normativo y jurídico de la contratación pública}
+
+La contratación estatal en Colombia opera bajo un conjunto de principios
+transparencia, economía, responsabilidad y selección objetiva orientados a que
+el gasto público sea eficiente y verificable \cite{mendieta2022regimen}. Ese marco
+no ha permanecido estático: con el tiempo se fue complementando con plataformas
+digitales y políticas de datos abiertos que buscan hacer más trazable cada peso
+contratado \cite{sierra2025contratacion,milic2022using}.
+
+Varios autores coinciden en que la transparencia no es solo un valor declarativo
+sino una condición operativa para reducir la corrupción y sostener la confianza
+ciudadana en las instituciones \cite{calderon2025contratacion,ospina2024percepcion}.Pero en 
+\cite{malaret2016reto} se va un paso más allá y plantea que el verdadero reto de la
+gobernanza contractual hoy no es aprobar más normas, sino consolidar sistemas de
+información abiertos que puedan soportar mecanismos de control más sofisticados.
+
+Desde esa perspectiva, construir un modelo predictivo sobre datos de SECOP~II no
+es solo un ejercicio técnico: es coherente con la dirección que el propio marco
+normativo señala. La vigilancia preventiva que propone este proyecto es,
+en cierto modo, la traducción práctica de los principios que ya están escritos
+en la ley.
+
+\subsection{Transparencia y gobernanza de datos abiertos}
+
+Un aspecto que no se puede ignorar al desarrollar sistemas analíticos basados en IA es la calidad y disponibilidad de los datos. En \cite{milic2022using} se propone el indicador \textit{OpenGovB Transparency Indicator}, que sirve para medir qué tan abiertos son los datos gubernamentales de un país, considerando aspectos como accesibilidad, interoperabilidad y reutilización. Este tipo de marcos ayuda a entender qué tan preparada está una institución para aprovechar sus propios datos en iniciativas analíticas.
+
+Además, algunos investigadores han explorado enfoques basados en redes para analizar las relaciones entre actores dentro de los sistemas de contratación. En \cite{wachs2019network} se propone modelar a las empresas participantes como nodos y sus interacciones como aristas en un grafo, lo que permite identificar patrones de comportamiento coordinado que podrían indicar colusión o acuerdos anticompetitivos.
