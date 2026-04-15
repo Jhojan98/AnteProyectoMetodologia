@@ -1,36 +1,9 @@
-\section{Identifiación del Problema}
-Colombia históricamente ha tenido problemas con la ejecución de proyectos de 
-infraestructura que están financiados por el Sistema General de Regalías (SGR) algunos 
-de los problemas en los que se ha visto afectada han sido asociados con retrasos, 
-sobrecostos, incumplimientos contractuales e incluso el abandono de obras, muchos de 
-estos estan relacionados con la corrupción en la que está sumergido este pais, lo que ha 
-generado los denominados “Elefantes Blancos” que son todos aquellos proyectos o 
-infraestructura costosa de mantener que genera más gastos que beneficios, resultando 
-que esta sea inútil y difícil de deshacerse de ella. Esta problemática no solo es generada 
-por la ineficiencia en la gestión de los recursos. Sino que también genera impedimentos 
-en el desarrollo social y económicos de las regiones beneficiaras. 
+\section{Identificación del Problema}
 
-Pese a los esfuerzos institucionales para mejorar los mecanismos de control y vigilancia, 
-La gran mayoría de las acciones de auditoria continúan siendo de carácter reactivo, es 
-decir, toman acción una vez el daño se ha materializado o cuando se ve un contratiempo 
-visible en la ejecución del proyecto. Lo anterior reduce la capacidad de las entidades de 
-control para la prevención de irregularidades que puede haber en un proyecto público. 
+Colombia ha enfrentado dificultades recurrentes en la ejecución de proyectos públicos de infraestructura, especialmente en términos de retrasos y sobrecostos, fenómenos ampliamente documentados en estudios recientes basados en datos de contratación \cite{gomez2025data,gomez2025analyzing}. A este panorama se suma la persistencia de dinámicas de corrupción en la contratación pública, que deterioran la eficiencia del gasto y favorecen resultados de bajo impacto social \cite{sierra2025contratacion,lyra2022fraud}. En este contexto, aparecen los llamados ``elefantes blancos'', entendidos como obras costosas, inconclusas o de baja utilidad social, que terminan generando más cargas que beneficios para los territorios.
 
-En este entorno, la accesibilidad de grandes volúmenes de datos que provienen de 
-plataformas como SECOP II, que es una plataforma transaccional en la cual las 
-entidades estatales y los proveedores hacen toda la gestión en línea y en tiempo real  de 
-todas las etapas de los procesos de contratación, en ellos encontramos procesos como: 
-planeación, selección, ejecución y liquidación, Gracias a estas plataformas se abren 
-nuevos caminos para el análisis predictivo a través de técnicas de Machine Learning. 
-Pese a lo anterior en la actualidad no se cuenta con alguna herramienta sistemática que 
-disponga de variables contractuales y financieras para hacer un predicción o 
-anticipación desde la etapa de selección, por lo tanto, hay una alta probabilidad que los 
-proyectos presenten contratiempos en su ejecución. 
+Aunque se han fortalecido mecanismos institucionales de control, buena parte de la vigilancia sigue operando de manera reactiva, es decir, cuando los problemas ya son visibles o el daño ya ocurrió. Este comportamiento limita la capacidad de prevención de las entidades públicas y de control fiscal \cite{ospina2024percepcion,sierra2025contratacion}.
 
-Debido a esto, surge la necesidad de desarrollar una herramienta que implemente 
-modelos predictivos que permita identificar de manera temprana contratos con alto 
-riesgo de convertirse en “Elefantes Blancos” y proyectos que puedan estar bajo procesos 
-irregulares, contribuyendo a que los entes de control cambien de un enfoque reactivo a 
-uno preventivo. Este planteamiento no solo fortalecería la toma de decisiones de las 
-entidades de control, sino que también promovería una gestión más eficiente, 
-transparente y responsable en el manejo de los recursos públicos en proyectos estatales. 
+Paralelamente, la disponibilidad de datos abiertos de contratación pública ha crecido de forma significativa. En particular, los registros transaccionales de plataformas como SECOP II permiten analizar variables de planeación, selección, ejecución y liquidación contractual. La evidencia reciente muestra que variables como el tipo de proceso, el valor del contrato y el número de oferentes son útiles para anticipar desviaciones de tiempo y costo \cite{gomez2025data,gomez2025analyzing}. Además, la literatura internacional confirma que los modelos de aprendizaje automático permiten identificar señales de riesgo en contratación pública, incluso con información limitada \cite{decarolis2022corruption,tas2024machine}.
+
+Sin embargo, persiste un vacío aplicado en la identificación temprana de riesgo para contratos de infraestructura financiados con recursos del Sistema General de Regalías (SGR), integrando de manera sistemática variables contractuales y financieras desde etapas iniciales del proceso. Por ello, se plantea desarrollar una herramienta predictiva que permita priorizar contratos con alta probabilidad de presentar irregularidades o resultados críticos de ejecución, contribuyendo a migrar de un control reactivo a uno preventivo. Este enfoque fortalecería la toma de decisiones y promovería una gestión más eficiente, transparente y responsable de los recursos públicos.

@@ -1,19 +1,19 @@
 \section{Objetivos}
 
 \subsection{Objetivo General}
-Desarrollar un modelo predictivo basado en técnicas de Machine Learning que funcione como un sistema de alertas tempranas, capaz de identificar contratos públicos de infraestructura con alto riesgo de incumplimiento o asociados a procesos irregulares, en el marco del Sistema General de Regalías (SGR). Para ello, se empleará como fuente principal de información la base de datos de la plataforma SECOP II.
+Disponer de un modelo predictivo de alertas tempranas, entrenado con datos de SECOP II para contratos de infraestructura financiados con recursos del Sistema General de Regalías (SGR), que clasifique el riesgo de incumplimiento o irregularidad desde la etapa de adjudicación y alcance un desempeño mínimo de AUC-ROC $\geq 0.75$ y \textit{recall} $\geq 0.70$ en validación cruzada estratificada de 5 pliegues.
 
 \subsection{Objetivos Específicos}
 \begin{enumerate}
-    \item Identificar y seleccionar variables relevantes de tipo contractual y financiero —como anticipos, modalidad de contratación, número de participantes y ubicación geográfica— que influyan en el riesgo de incumplimientos e irregularidades en contratos de infraestructura pública.
+    \item Definir un conjunto validado de variables contractuales y financieras (por ejemplo: anticipo, modalidad de contratación, número de oferentes, valor y ubicación geográfica), acompañado de un ranking de importancia para la predicción del riesgo.
 
-    \item Recolectar, integrar y preprocesar los datos provenientes de la plataforma SECOP II, garantizando su calidad, consistencia y confiabilidad para el análisis predictivo.
+    \item Consolidar una base de datos analítica integrada y depurada de SECOP II para contratos SGR, con diccionario de datos, trazabilidad del preprocesamiento y un nivel de completitud de al menos 85\% en las variables críticas definidas por el proyecto.
 
-    \item Diseñar y entrenar modelos de aprendizaje supervisado, tales como Random Forest, Regresión Logística y XGBoost, con el fin de predecir de manera precisa factores de riesgo en contratos públicos.
+    \item Obtener tres modelos supervisados entrenados sobre el mismo conjunto de datos (Regresión Logística, Random Forest y XGBoost), listos para su comparación bajo un protocolo único de evaluación.
 
-    \item Evaluar el desempeño de los modelos mediante técnicas como la validación cruzada estratificada y el uso de métricas robustas, tales como AUC, precisión, recall y F1-score, para determinar su efectividad.
+    \item Generar una evaluación comparativa reproducible de los modelos, con validación cruzada estratificada ($k=5$) y reporte de AUC-ROC, precisión, \textit{recall} y F1-score.
 
-    \item Comparar los resultados obtenidos por los diferentes modelos con el propósito de identificar aquel que ofrezca la mayor capacidad predictiva en la detección temprana de riesgos.
+    \item Seleccionar un modelo final mediante criterios explícitos de desempeño (máximo AUC-ROC y \textit{recall} mínimo de 0.70), junto con su configuración de hiperparámetros documentada.
 
-    \item Proponer un esquema de implementación del modelo como herramienta de alertas tempranas, orientado a fortalecer la detección de anomalías por parte de entidades de control y mecanismos de veeduría ciudadana.
+    \item Entregar una salida operativa de priorización de riesgo (índice de riesgo y listado de contratos priorizados) y una guía de uso para entidades de control y veeduría ciudadana.
 \end{enumerate}
