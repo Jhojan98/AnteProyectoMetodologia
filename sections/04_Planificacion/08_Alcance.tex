@@ -11,23 +11,23 @@ recursos del Sistema General de Regalías~(SGR).
 Al cierre del proyecto se contará con los siguientes productos concretos:
 
 \begin{itemize}
-    \item Un \textit{pipeline} de extracción y preparación de datos que cubra desde
+    \item Un pipeline de extracción y preparación de datos que cubra desde
     la descarga de registros de SECOP~II hasta la generación de un conjunto de datos
     listo para modelar. Esto incluye manejo de nulos, corrección de inconsistencias
     territoriales y la construcción indirecta de la variable de riesgo a través de
-    indicadores \textit{proxy}.
+    indicadores proxy.
 
     \item Un módulo de ingeniería de características con las variables que la
     literatura identifica como más informativas: porcentaje de anticipo, modalidad
     de contratación, número de proponentes y localización del contrato.
 
-    \item Un módulo de entrenamiento que compare tres clasificadores ---Regresión
-    Logística, Random Forest y XGBoost--- ajustados con búsqueda aleatoria de
-    hiperparámetros (\texttt{RandomizedSearchCV}) para mantenerse dentro de los
+    \item Un módulo de entrenamiento que compare tres clasificadores (Regresión
+    Logística, Random Forest y XGBoost) ajustados con búsqueda aleatoria de
+    hiperparámetros (RandomizedSearchCV) para mantenerse dentro de los
     límites computacionales del proyecto.
 
     \item Un módulo de evaluación con validación cruzada estratificada ($k = 5$) y
-    reporte de AUC-ROC, F1-score, precisión y \textit{recall}. Se añadirá un análisis
+    reporte de AUC-ROC, F1-score, precisión y recall. Se añadirá un análisis
     de importancia de variables para saber qué factores pesan más en la predicción.
 
     \item El modelo seleccionado, serializado y documentado, junto con el código
@@ -54,8 +54,8 @@ alcance las siguientes actividades:
     \item Desplegar el modelo en producción o integrarlo con los sistemas de alguna
     entidad de control. El trabajo termina en la validación académica del modelo.
 
-    \item Desarrollar cualquier tipo de interfaz de usuario ---web, móvil o de
-    escritorio---. Los resultados se presentan en el informe y el repositorio de
+    \item Desarrollar cualquier tipo de interfaz de usuario (web, móvil o de
+    escritorio). Los resultados se presentan en el informe y el repositorio de
     código.
 
     \item Ejecutar búsquedas exhaustivas de hiperparámetros (Grid Search completo),
